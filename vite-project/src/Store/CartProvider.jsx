@@ -4,6 +4,7 @@ import CartContext from "./CartContext";
 const CartProvider = (props) =>{
     const[token,setToken] = useState(localStorage.getItem("Token"))
     const  isToken= !!token
+   // console.log(isToken)
      
     localStorage.setItem("Token",token)
 
@@ -13,9 +14,17 @@ const CartProvider = (props) =>{
          setToken(token)
     }
 
+    const removeTokenHandler = () =>{
+        console.log(isToken)
+        localStorage.removeItem("Token")
+        setToken(null)
+    }
+
     const object = {
         token:token,
-        addToken:tokenHandler
+        isLoggedIn:isToken,
+        addToken:tokenHandler,
+        removeToken:removeTokenHandler
     }
     return(
         <CartContext.Provider  value={object}>

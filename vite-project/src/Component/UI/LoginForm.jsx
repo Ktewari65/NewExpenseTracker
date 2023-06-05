@@ -24,6 +24,9 @@ import CartContext from "../../Store/CartContext";
         setPassword(event.target.value)
     }
 
+
+    // LOGIN
+
     const formHandler = (event) =>{
    event.preventDefault();
    const object ={
@@ -63,13 +66,37 @@ import CartContext from "../../Store/CartContext";
         navigate('/home')
         cartCtx.addToken(response.idToken)     // console.log(response.idToken)
     }).catch((error) =>{
+      alert(error)
         console.log(error)
     })
 
     }
+
+    const passwordResetHandler = (event) =>{
+       event.preventDefault()
+       const obj = {
+       email:name,
+       }
+      fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBFfooTLjTzP3FcfAOJUdY4VfItSr4ifpw',{
+        method:'POST',
+        body:JSON.stringify({
+          requestType:"PASSWORD_RESET",
+          email:name,
+          }),
+        headers:{
+          "Content-Type" : "application/json"
+        }
+      }).then((response) =>{
+        response.json().then((data)=>{
+          console.log(data)
+        })
+      }).catch((error)=>{
+        console.log(error)
+      })
+    }
 return(
     
-    <div className="login-box">
+  <div className="login-box">
     <h2>{login ? 'Login' : 'Signup'}</h2>
     <form onSubmit={formHandler}>
       <div className="user-box">
@@ -83,6 +110,7 @@ return(
       <a href="#">
       <button>{login ? "login " : "Create Account"}</button>
        <br></br>
+       <div onClick={passwordResetHandler}>ForgetPassword</div>
       <button onClick={loginHandler}>{login ? 'Signup' : 'Signin'}</button>
       </a>
     </form>

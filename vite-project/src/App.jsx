@@ -4,17 +4,20 @@ import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import Home from './Pages/Home'
 import Profile from './Pages/Profile'
+import CartContext from './Store/CartContext'
+import { useContext } from 'react'
 
 
 function App() {
- 
+   const cartCtx= useContext(CartContext)
+   console.log(cartCtx.isLoggedIn)
 
   return (
     <div>
       <Routes>
         <Route exact path="/" element={<LoginForm/>} />
-        <Route path="/home"  element={<Home/>}/>
-        <Route path="/details"  element={<Profile/>}/>
+       { !cartCtx.isLoggedin  && <Route path="/home"  element={<Home/>}/> }
+       { !cartCtx.isLoggedin  && <Route path="/details"  element={<Profile/>}/>}
         
       </Routes>
      
