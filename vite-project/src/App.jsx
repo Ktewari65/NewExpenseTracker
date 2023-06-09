@@ -10,7 +10,7 @@ import { useContext } from 'react'
 
 function App() {
    const cartCtx= useContext(CartContext)
-   console.log(cartCtx.isLoggedIn)
+  // console.log(cartCtx.isLoggedIn)
 
   return (
     <div>

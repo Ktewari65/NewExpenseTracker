@@ -5,8 +5,8 @@ html {
     margin:0;
     padding:0;
     font-family: sans-serif;
-     background: linear-gradient(#141e30, #243b55);  
-  }
+     background: linear-gradient(#141e30, #243b55);   
+  } 
   
   .login-box {
     position: absolute;
@@ -165,4 +165,6 @@ html {
       bottom: 100%;
     }
   }
-  
+  .button{
+    color:#03e9f4;
+  }

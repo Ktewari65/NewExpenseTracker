@@ -108,10 +108,10 @@ return(
         <label>Password</label>
       </div>
       <a href="#">
-      <button>{login ? "login " : "Create Account"}</button>
+      <button className= "button">{login ? "login " : "Create Account"}</button>
        <br></br>
-       <div onClick={passwordResetHandler}>ForgetPassword</div>
-      <button onClick={loginHandler}>{login ? 'Signup' : 'Signin'}</button>
+       <div onClick={passwordResetHandler}>Forget Password?</div>
+      <button className= "button" onClick={loginHandler}>{login ? 'Signup' : 'Signin'}</button>
       </a>
     </form>
   </div>

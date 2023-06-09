@@ -3,8 +3,9 @@ import CartContext from "./CartContext";
 
 const CartProvider = (props) =>{
     const[token,setToken] = useState(localStorage.getItem("Token"))
+    const[item,setItem] = useState([])
     const  isToken= !!token
-   // console.log(isToken)
+ 
      
     localStorage.setItem("Token",token)
 
@@ -21,6 +22,7 @@ const CartProvider = (props) =>{
     }
 
     const object = {
+        items:item,
         token:token,
         isLoggedIn:isToken,
         addToken:tokenHandler,
