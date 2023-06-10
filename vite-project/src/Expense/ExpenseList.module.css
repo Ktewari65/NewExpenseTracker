@@ -1,24 +1,12 @@
-.items{
- display: flex;
- position: relative;
- flex-wrap: wrap;
- border: 2px solid black;
- color: black;
- padding: 20px;
- background-color: gray;
- gap: 1rem;
- 
-  }
+.container {
+  margin: 100px;
+  padding: 100px;
+  padding-right: 100px;
 
-.button{
-    position: relative;
-    margin-left: 10px;
-    color: grey;
-    margin-top: 20px;
-    background-color: black;
 }
 
 .expenseitem {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,5 +15,49 @@
   margin: 1rem 0;
   border-radius: 12px;
   background-color: #4b4b4b;
-  padding-left: 100px;
+  padding-left: 70px;
+  margin-right: 20px;
+ 
+ }
+
+.expenseitemdescription {
+  color: black;
+  font-weight: bold;
+  margin-right: 20px;
+  padding-left: -10px;
 }
+
+.expenseitemcategory {
+  font-weight: bold;
+  color: black;
+  margin-right: 20px;
+}
+
+.expenseitemmoney {
+  font-weight: bold;
+  color: #4CAF50; /* Green color for highlight */
+  padding-right: 20px;
+  margin-left: 20px;
+}
+
+.button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 50%;
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #c82333;
+}
+
+.total
+{
+ padding: 30px;
+ background-color: #4CAF50;
+}
+
+

@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartContext from "./CartContext";
 
 const CartProvider = (props) =>{
     const[token,setToken] = useState(localStorage.getItem("Token"))
     const[item,setItem] = useState([])
     const  isToken= !!token
+
+    useEffect(()=>{
+        setItem(item)
+    },[item])
  
-     
-    localStorage.setItem("Token",token)
+     console.log(item)
+     localStorage.setItem("Token",token)
 
 
 

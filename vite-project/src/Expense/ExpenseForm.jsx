@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./ExpenseForm.module.css";
 import { useState, useContext } from "react";
+import Total from "./Total";
 import CartContext from "../Store/CartContext";
 
 const ExpenseForm = (props) => {
   const ctx = useContext(CartContext);
-  const [name, setName] = useState("");
+  const [name, setName] = useState();
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [item, setItem] = useState([]);
+  
 
   const moneyHandler = (event) => {
-    setName(event.target.value);
+    setName(event.target.value)
+  
   };
 
   const descriptionHandler = (event) => {
@@ -25,15 +27,15 @@ const ExpenseForm = (props) => {
   const formHandler = (event) => {
     event.preventDefault();
     const obj = {
-      money: name,
-      description: description,
-      category: category,
-    ///  id: Math.random(),
+        money: name,
+        description: description,
+        category: category,
     };
-
+       let quantity = 0
+       quantity = document.getElementById("total").value
+       ctx.items.push(quantity)
    
-    //props.comingData(obj);
-    fetch("https://expensetreacker-default-rtdb.firebaseio.com/Items.json", {
+     fetch("https://expensetreacker-default-rtdb.firebaseio.com/Items.json", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
@@ -45,45 +47,41 @@ const ExpenseForm = (props) => {
             const newObj = {...obj,data}
             props.comingData(newObj);
         })
-        
-        // ctx.items.push(response)
-        //console.log(ctx.items)
-      })
+        })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const getExpenses = (event) => {
-    event.preventDefault();
-      fetch("https://expensetreacker-default-rtdb.firebaseio.com/Items.json")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to Fetch Items");
-        }
-      })
-      .then((data) => {
-        console.log(data)
-        ctx.items.push(data);
-        const itemsArray = Object.values(data);
-        setItem(itemsArray);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const getExpenses = (event) => {
+  //   event.preventDefault();
+  //     fetch("https://expensetreacker-default-rtdb.firebaseio.com/Items.json")
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         throw new Error("Failed to Fetch Items");
+  //       }
+  //     })
+  //     .then((data) => {
+  //       console.log(data)
+  //       ctx.items.push(data);
+  //       const itemsArray = Object.values(data);
+  //       setItem(itemsArray);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
- 
-  // onSubmit={formHandler}
-
+  
   return (
     <div>
+       <Total/>
       <form className={classes.container}>
-        <h2 className={classes.expense}> Add Your Expense</h2>
+       <h2 className={classes.expense}> Add Your Expense</h2>
         <label className={classes.number}>Money:</label>
-        <input type="number" min="100" max="1000" onChange={moneyHandler} />
+        <input type="number" min="100" max="1000"  id="total" onChange={moneyHandler} />
         <label className={classes.number}>Description:</label>
         <input type="text" onChange={descriptionHandler} />
         <label className={classes.number}>Category:</label>
@@ -93,28 +91,17 @@ const ExpenseForm = (props) => {
           <option>Study</option>
           <option>Others</option>
         </select>
-        <br></br>
+         {/* <br></br> */}
         <button onClick={formHandler} className={classes.button}>
           Add
         </button>
-        <button onClick={getExpenses} className={classes.button}>
+        {/* <button onClick={getExpenses} className={classes.button}>
           Get
-        </button>
+        </button> */}
       </form>
-      <ul className={classes.items}>
-        {item.map((items, index) => {
-          //console.log(items)
-          return (
-            <li key={index}>
-              {" "}
-              Category: {items.category}-Description:{items.description} -
-              Money:{items.money}
-              {/* <button>EDIT</button>
-              <button>DELETE</button> */}
-            </li>
-          );
-        })}
-      </ul>
+    
+     {/* <br></br> */}
+    
     </div>
   );
 };

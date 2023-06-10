@@ -1,19 +1,19 @@
-import React, {  useState,useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import classes from './ExpenseList.module.css'
 
 
 const ExpenseList = (props) =>{
     const[items,setItems] = useState([])
-  console.log(props.onSend)
-  console.log(items) 
+ // console.log(props.onSend)
+  //console.log(items) 
   
   useEffect(() => {
     setItems(props.onSend);
   }, [props.onSend])
 
     
-   const deleteHandler = (key) =>{
-    // event.preventDefault()
+   const deleteHandler = (key,event) =>{
+     event.preventDefault()
     console.log(key)
       fetch (`https://expensetreacker-default-rtdb.firebaseio.com/Items/${key}.json`,{
          method: 'DELETE',
@@ -26,7 +26,7 @@ const ExpenseList = (props) =>{
              const updatedData = items.filter((item)=>{
                 return item.data.name !== key
              })
-              console.log(updatedData)
+             // console.log(updatedData)
              setItems(updatedData)
          }).catch(()=>{
              console.log("error")
@@ -37,15 +37,15 @@ const ExpenseList = (props) =>{
        // console.log(items)
    
     return(
-    <div className={classes.container}>
-        {items.map((item,index)=>{
-          console.log(item)
-         const key =   item.data.name //item.data.name 
-         console.log(key)
-            return <li className={classes.expenseitem}  key={index}> Description: {item.description} - Category:{item.category} - Money: {item.money}$  
-            <button className={classes.button}>EDIT</button>
-            <button onClick={()=>deleteHandler(key)} className={classes.button}>DELETE</button> </li>
-        })}
+      <div className={classes.container}>
+      {items.map((item, index) => (
+        <li className={classes.expenseitem} key={index}>
+          <span className={classes.expenseitemdescription}>Description: {item.description}</span>
+          <span className={classes.expenseitemcategory}>Category: {item.category}</span>
+          <span className={classes.expenseitemmoney}>Money: {item.money}$</span>
+          <button onClick={(event) => deleteHandler((item.data.name),event)} className={classes.button}>X</button>
+        </li>
+      ))}
     </div>
    )
 }
