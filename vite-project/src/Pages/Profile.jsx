@@ -3,13 +3,16 @@ import classes from './Profile.module.css'
 import { useState } from "react";
 import CartContext from "../Store/CartContext";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch} from "react-redux";
+import { formElements } from "../ReduxStore/redux";
 
 
 
 
 const Profile = () =>{
-    
+    const logout = useSelector(state=>state.isLoggedIn)
+    const dispatch = useDispatch()
+    console.log(logout)
     const ctx = useContext(CartContext)
     const navigate = useNavigate()
     const [name,setName]= useState('')
@@ -26,7 +29,8 @@ const photoHandler = (event) =>{
       // LogOut Functionallity
 
 const logoutHandler = () =>{
-      ctx.removeToken()
+    //  ctx.removeToken()
+    dispatch(formElements.logout())
       navigate("/")
    }
 

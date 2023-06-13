@@ -37,7 +37,7 @@ const ExpenseList = (props) =>{
        // console.log(items)
    
     return(
-      <div className={classes.container}>
+      <div className={classes.container}>  
       {items.map((item, index) => (
         <li className={classes.expenseitem} key={index}>
           <span className={classes.expenseitemdescription}>Description: {item.description}</span>

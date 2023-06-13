@@ -9,3 +9,32 @@
     top: 50px;
     left: 0px;
   }
+
+.premium{
+    position:absolute;
+    top:130px;
+    left: 0px;
+    }
+
+.button {
+  color: black;
+  background-color: green;
+  shape-margin: 10cap;
+}
+
+
+.themeToggle {
+  background-color: #f5f5f5;
+  color: #333333;
+  /* Add other styles as needed */
+}
+
+.light {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+.dark {
+  background-color: #333333;
+  color: #f5f5f5;
+}

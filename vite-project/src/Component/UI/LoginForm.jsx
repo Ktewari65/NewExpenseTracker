@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../../Store/CartContext";
 
- const LoginForm = () =>{
 
+ const LoginForm = () =>{
+   
   const cartCtx= useContext(CartContext)
     const[login,setLogin] = useState(true)
     const[name,setName] = useState('')
@@ -17,7 +18,8 @@ import CartContext from "../../Store/CartContext";
     }
 
     const nameHandler = (event) =>{
-        setName(event.target.value)
+       setName(event.target.value)
+     
     }
 
     const passwordHandler = (event) =>{
@@ -97,6 +99,7 @@ import CartContext from "../../Store/CartContext";
 return(
     
   <div className="login-box">
+  
     <h2>{login ? 'Login' : 'Signup'}</h2>
     <form onSubmit={formHandler}>
       <div className="user-box">

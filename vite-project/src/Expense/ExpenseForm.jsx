@@ -3,25 +3,35 @@ import classes from "./ExpenseForm.module.css";
 import { useState, useContext } from "react";
 import Total from "./Total";
 import CartContext from "../Store/CartContext";
+import { useSelector, useDispatch } from "react-redux";
+import { formElements } from "../ReduxStore/redux";
 
 const ExpenseForm = (props) => {
+  const dispatch = useDispatch()
+  const name = useSelector(state =>state.setName)
+  const description = useSelector(state => state.setDescription)
+  const category = useSelector(state=>state.setCategory)
+  console.log(name)
   const ctx = useContext(CartContext);
-  const [name, setName] = useState();
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+ // const [name, setName] = useState();
+  //const [description, setDescription] = useState("");
+  //const [category, setCategory] = useState("");
   
 
   const moneyHandler = (event) => {
-    setName(event.target.value)
+   // setName(event.target.value)
+   dispatch(formElements.setName(event.target.value))
   
   };
 
   const descriptionHandler = (event) => {
-    setDescription(event.target.value);
+   // setDescription(event.target.value);
+   dispatch(formElements.setDescription(event.target.value))
   };
 
   const categoryHandler = (event) => {
-    setCategory(event.target.value);
+   // setCategory(event.target.value);
+   dispatch(formElements.setCategory(event.target.value))
   };
 
   const formHandler = (event) => {
@@ -91,17 +101,12 @@ const ExpenseForm = (props) => {
           <option>Study</option>
           <option>Others</option>
         </select>
-         {/* <br></br> */}
-        <button onClick={formHandler} className={classes.button}>
+         <button onClick={formHandler} className={classes.button}>
           Add
         </button>
-        {/* <button onClick={getExpenses} className={classes.button}>
-          Get
-        </button> */}
       </form>
     
-     {/* <br></br> */}
-    
+   
     </div>
   );
 };
