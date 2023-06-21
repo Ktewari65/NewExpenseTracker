@@ -9,7 +9,7 @@
     padding-bottom: 20px; 
     margin-right: 250px;
     margin-bottom: 230px;
-    /* margin-left: 100px; */
+    margin-left: 100px; 
 
   }
 
@@ -28,7 +28,7 @@
 .expense{
     position: absolute;
     margin-top: -79px;
-    margin-left: 180px;
+    margin-left: 280px;
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
                      0 3px 0 #ccc, 0 4px 0 #ccc,
                      0 5px 0 #ccc, 0 6px 0 #ccc,

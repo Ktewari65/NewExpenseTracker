@@ -6,6 +6,7 @@ import CartContext from "../Store/CartContext";
 import { useSelector, useDispatch } from "react-redux";
 import { formElements } from "../ReduxStore/redux";
 
+
 const ExpenseForm = (props) => {
   const dispatch = useDispatch()
   const name = useSelector(state =>state.setName)
@@ -63,26 +64,27 @@ const ExpenseForm = (props) => {
       });
   };
 
-  // const getExpenses = (event) => {
-  //   event.preventDefault();
-  //     fetch("https://expensetreacker-default-rtdb.firebaseio.com/Items.json")
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         throw new Error("Failed to Fetch Items");
-  //       }
-  //     })
-  //     .then((data) => {
-  //       console.log(data)
-  //       ctx.items.push(data);
-  //       const itemsArray = Object.values(data);
-  //       setItem(itemsArray);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+   const getExpenses = (event) => {
+     event.preventDefault();
+       fetch("https://expensetreacker-default-rtdb.firebaseio.com/Items.json")
+       .then((response) => {
+         if (response.ok) {
+           return response.json();
+         } else {
+           throw new Error("Failed to Fetch Items");
+         }
+       })
+       .then((data) => {
+        const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = "expenses.txt";
+        downloadLink.click();
+       })
+       .catch((error) => {
+         console.log(error);
+      });
+   };
 
   
   return (
@@ -104,6 +106,7 @@ const ExpenseForm = (props) => {
          <button onClick={formHandler} className={classes.button}>
           Add
         </button>
+        <button onClick={getExpenses}>Download</button>
       </form>
     
    

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CartContext from "../../Store/CartContext";
 
 
+
  const LoginForm = () =>{
    
   const cartCtx= useContext(CartContext)
@@ -98,8 +99,8 @@ import CartContext from "../../Store/CartContext";
     }
 return(
     
-  <div className="login-box">
-  
+ <div className="container">
+ <div className="login-box">
     <h2>{login ? 'Login' : 'Signup'}</h2>
     <form onSubmit={formHandler}>
       <div className="user-box">
@@ -117,6 +118,7 @@ return(
       <button className= "button" onClick={loginHandler}>{login ? 'Signup' : 'Signin'}</button>
       </a>
     </form>
+  </div>
   </div>
 )
  }
